@@ -1,0 +1,9 @@
+.social {
+  display: flex;
+}
+
+.info {
+  margin: 1.5rem 1.5rem;
+  padding: 2rem 2rem;
+  border: black solid;
+}
