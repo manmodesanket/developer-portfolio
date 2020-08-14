@@ -4,7 +4,7 @@ const Info = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
-  const [social, setSocial] = useState("");
+  //const [social, setSocial] = useState("");
   const [location, setLocation] = useState("");
   const [work, setWork] = useState("");
   const [looking, setLooking] = useState("");
@@ -13,11 +13,11 @@ const Info = () => {
     setName("John Doe");
     setUsername("johnnyboi");
     setBio("I don't kid anymore. I do things");
-    setSocial("");
+    //setSocial("");
     setLocation("Pune, India");
     setWork("Software Engineer at Amdocs");
     setLooking("Open for New Oppoertunity");
-  });
+  }, []);
 
   return (
     <div className="info">
@@ -27,7 +27,6 @@ const Info = () => {
           <div>@{username}</div>
           <div>{bio}</div>
           <ul className="social">
-            <li>LinkedIn</li>
             <li>Twitter</li>
             <li>Github</li>
             <li>Medium</li>

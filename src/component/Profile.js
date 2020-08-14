@@ -13,8 +13,8 @@ const Profile = () => {
   return (
     <div className="container">
       <Info />
-      <Skills />
-      <Projects />
+      <Skills username={username} />
+      <Projects username={username} />
     </div>
   );
 };
