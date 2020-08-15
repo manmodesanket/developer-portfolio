@@ -40,3 +40,16 @@ ul.skillList {
 li {
   display: block;
 }
+
+.homepageheader {
+  font-size: xx-large;
+}
+
+.top {
+  margin-top: 2.5rem;
+}
+
+.login-form {
+  margin-top: 10%;
+  background-color: white;
+}

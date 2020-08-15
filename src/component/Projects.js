@@ -31,7 +31,7 @@ const Projects = (props) => {
       },
     ];
     setProjects(p);
-  }, [props.username]);
+  }, []);
 
   if (projects) {
     const list = projects.map((p, idx) => {
