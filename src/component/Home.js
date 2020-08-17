@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { auth, db, logout } from "../firebase/firebase";
 import { Link } from "@reach/router";
-import { auth } from "../firebase/firebase";
 
 const Home = () => {
-  //const { email, setEmail, username, setUserame } = useContext(UserContext);
-
+  const [username, setUsername] = useState(null);
+  useEffect(() => {
+    if (auth.currentUser) {
+      db.collection("mapEmailUsername")
+        .doc(auth.currentUser.email)
+        .get()
+        .then((doc) => {
+          setUsername(doc.data().username);
+        });
+    }
+  }, [username]);
   if (auth.currentUser) {
+    console.log(auth.currentUser.email);
     return (
       <div className="container">
         <div className="row top">
@@ -16,7 +26,7 @@ const Home = () => {
             <Link to="/login">
               <button>Login</button>
             </Link>
-            <Link to="/profile">
+            <Link to={`${username}`}>
               <button>Profile</button>
             </Link>
           </div>
@@ -24,6 +34,7 @@ const Home = () => {
             <Link to="/signup">
               <button>Sigup</button>
             </Link>
+            <button onClick={logout}>Logout</button>
           </div>
         </div>
         <div className="row">

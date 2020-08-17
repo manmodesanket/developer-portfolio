@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { auth, db } from "../firebase/firebase";
+import { db } from "../firebase/firebase";
 import Projects from "./Projects";
 import Info from "./Info";
 import Skills from "./Skills";
+import { auth } from "firebase";
 
-const Profile = () => {
+const Profile = (props) => {
   const [username, setUsername] = useState("");
   const [data, setData] = useState(null);
   useEffect(() => {
     document.title = "Profile";
-    //setUsername("username");
-    if (auth.currentUser) {
-      db.collection("users")
-        .doc(auth.currentUser.email)
-        .get()
-        .then((doc) => {
-          setData(doc.data());
-          setUsername(doc.data().username);
-          document.title = username;
-        });
-    }
-  }, [username]);
+    db.collection("userList")
+      .doc(props.username)
+      .get()
+      .then((doc) => {
+        setData(doc.data());
+        setUsername(doc.data().username);
+        document.title = `${username}`;
+      });
+  }, [username, props.username]);
   return (
     <div className="container">
       <Info data={data} />

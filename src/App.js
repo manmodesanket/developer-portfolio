@@ -10,16 +10,15 @@ import { UserContext } from "./component/UserContext";
 import "./styles/styles.css";
 
 const App = () => {
-  const [email, setEmail] = useState(null);
   const [username, setUsername] = useState(null);
   return (
     <div>
-      <UserContext.Provider value={{ email, setEmail, username, setUsername }}>
+      <UserContext.Provider value={{ username, setUsername }}>
         <Router>
           <Home path="/" />
           <Login path="/login" />
           <Signup path="/signup" />
-          <Profile path="/profile" />
+          <Profile path=":username" />
         </Router>
       </UserContext.Provider>
     </div>

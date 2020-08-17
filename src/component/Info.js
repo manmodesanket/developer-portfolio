@@ -5,6 +5,7 @@ const Info = (props) => {
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
   //const [social, setSocial] = useState("");
+  const [social, setSocial] = useState(null);
   const [location, setLocation] = useState("");
   const [work, setWork] = useState("");
   const [looking, setLooking] = useState("");
@@ -22,7 +23,7 @@ const Info = (props) => {
       setName(props.data.name);
       setUsername(props.data.username);
       setBio(props.data.bio);
-      //setSocial("");
+      setSocial(props.data.social);
       setLocation(props.data.location);
       setWork(props.data.work);
       setLooking(props.data.work_status);
@@ -31,6 +32,15 @@ const Info = (props) => {
   }, [props.data]);
 
   if (flag) {
+    const socialList = social.map((s, idx) => {
+      return (
+        <li key={idx}>
+          <a href={s.link} target="_blank" rel="noreferrer">
+            {s.site}
+          </a>
+        </li>
+      );
+    });
     return (
       <div className="info">
         <div className="data">
@@ -38,11 +48,7 @@ const Info = (props) => {
             <h1>{name}</h1>
             <div>@{username}</div>
             <div>{bio}</div>
-            <ul className="social">
-              <li>Twitter</li>
-              <li>Github</li>
-              <li>Medium</li>
-            </ul>
+            <ul className="social">{socialList}</ul>
           </div>
           <ul className="status">
             <li>

@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { auth } from "../firebase/firebase";
+import { auth, login } from "../firebase/firebase";
 
 const Login = () => {
   const [emailForm, setEmailForm] = useState("");
   const [pass, setPass] = useState("");
-  //const { email, setEmail, username, setUsername } = useContext(UserContext);
-  const login = () => {
-    auth.signInWithEmailAndPassword(emailForm, pass);
-  };
   const handleChange = (e) => {
     if (e.target.name == "email") {
       setEmailForm(e.target.value);
@@ -18,16 +14,13 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log("email " + email);
-    //console.log("pass  " + pass);
-    login();
+    login(emailForm, pass);
     document.getElementById("login-form").reset();
   };
 
-  const logout = () => {
-    auth.signOut();
-  };
-
+  auth.onAuthStateChanged(() => {
+    console.log("change");
+  });
   if (auth.currentUser) {
     //setEmail(auth.currentUser.email);
     console.log(auth.currentUser);
@@ -55,7 +48,6 @@ const Login = () => {
         </label>
         <input type="submit" value="Submit" />
       </form>
-      <button onClick={logout}>Logout</button>
     </div>
   );
 };
