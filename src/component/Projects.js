@@ -1,33 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "@reach/router";
+import { auth, db } from "../firebase/firebase";
+//import { Link } from "@reach/router";
+//import { UserContext } from "./UserContext";
 
 const Projects = (props) => {
   const [projects, setProjects] = useState(null);
+  //const { email, setEmail, username, setUserame } = useContext(UserContext);
   useEffect(() => {
+    //db.collection('users').doc()
+    //console.log(db.collection("users").doc(email));
+    if (auth.currentUser) {
+      console.log(auth.currentUser.email);
+      /*db.collection("users")
+        .doc(auth.currentUser.email)
+        .get()
+        .then((doc) => {
+          console.log(doc.data());
+        });*/
+    }
     const p = [
       {
         name: "Project Title 1",
         description: "First Project",
-        web: {
-          github: "https://github.com/manmodesanket/developer-portfolio",
-          site: "www.google.com",
-        },
+        github: "https://github.com/manmodesanket/developer-portfolio",
+        site: "www.google.com",
       },
       {
         name: "Project Title 2",
         description: "Second Project",
-        web: {
-          github: "https://github.com/manmodesanket/developer-portfolio",
-          site: "www.google.com",
-        },
+        github: "https://github.com/manmodesanket/developer-portfolio",
+        site: "www.google.com",
       },
       {
         name: "Project Title 3",
         description: "Third Project",
-        web: {
-          github: "https://github.com/manmodesanket/developer-portfolio",
-          site: "www.google.com",
-        },
+        github: "https://github.com/manmodesanket/developer-portfolio",
+        site: "www.google.com",
       },
     ];
     setProjects(p);
@@ -43,10 +51,10 @@ const Projects = (props) => {
               <div>{p.description}</div>
             </div>
             <div className="card-action">
-              <a href={p.web.github} target="_blank" rel="noreferrer">
+              <a href={p.github} target="_blank" rel="noreferrer">
                 Github
               </a>
-              <a href={p.web.site} target="_blank" rel="noreferrer">
+              <a href={p.site} target="_blank" rel="noreferrer">
                 Site
               </a>
             </div>

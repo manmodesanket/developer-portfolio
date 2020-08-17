@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { auth } from "../firebase/firebase";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [emailForm, setEmailForm] = useState("");
   const [pass, setPass] = useState("");
-
+  //const { email, setEmail, username, setUsername } = useContext(UserContext);
   const login = () => {
-    auth.signInWithEmailAndPassword(email, pass);
+    auth.signInWithEmailAndPassword(emailForm, pass);
   };
   const handleChange = (e) => {
     if (e.target.name == "email") {
-      setEmail(e.target.value);
+      setEmailForm(e.target.value);
     } else if (e.target.name == "password") {
       setPass(e.target.value);
     }
@@ -18,8 +18,8 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("email " + email);
-    console.log("pass  " + pass);
+    //console.log("email " + email);
+    //console.log("pass  " + pass);
     login();
     document.getElementById("login-form").reset();
   };
@@ -29,6 +29,7 @@ const Login = () => {
   };
 
   if (auth.currentUser) {
+    //setEmail(auth.currentUser.email);
     console.log(auth.currentUser);
   }
   return (
