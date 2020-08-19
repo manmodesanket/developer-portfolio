@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Router } from "@reach/router";
-import Home from "./component/Home";
-import Login from "./component/Login";
-import Signup from "./component/Signup";
-import Profile from "./component/Profile";
-import { UserContext } from "./component/UserContext";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Profile from "./components/Profile";
+import { UserContext } from "./components/UserContext";
 
 import "./styles/styles.css";
 
@@ -18,7 +18,7 @@ const App = () => {
           <Home path="/" />
           <Login path="/login" />
           <Signup path="/signup" />
-          <Profile path=":username" />
+          <Profile path="/:username" />
         </Router>
       </UserContext.Provider>
     </div>

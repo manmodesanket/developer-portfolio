@@ -1,23 +1,12 @@
-import { Link, Redirect } from "@reach/router";
-import React, { useState, useEffect, useContext } from "react";
-import { auth, login } from "../firebase/firebase";
+import { Link } from "@reach/router";
+import React, { useState, useContext } from "react";
+import { login } from "../firebase/firebase";
 import { UserContext } from "./UserContext";
 
 const Login = () => {
   const [emailForm, setEmailForm] = useState("");
   const [pass, setPass] = useState("");
   const { username, setUsername } = useContext(UserContext);
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    auth.onAuthStateChanged(() => {
-      if (auth.currentUser) {
-        setLoggedIn(true);
-      } else {
-        setLoggedIn(false);
-      }
-    });
-  }, [loggedIn]);
 
   const handleChange = (e) => {
     if (e.target.name == "email") {
@@ -33,7 +22,7 @@ const Login = () => {
     document.getElementById("login-form").reset();
   };
 
-  if (loggedIn) {
+  if (username) {
     //setEmail(auth.currentUser.email);
     return (
       <div>

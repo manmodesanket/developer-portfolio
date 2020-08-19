@@ -19,7 +19,7 @@ const Home = () => {
       }
     });
   }, [setUsername]);
-  if (auth.currentUser) {
+  if (username) {
     return (
       <div className="container">
         <div className="row top">
