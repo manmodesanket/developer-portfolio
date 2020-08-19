@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { auth, db } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 //import { Link } from "@reach/router";
 //import { UserContext } from "./UserContext";
 
-const Projects = (props) => {
+const Projects = () => {
   const [projects, setProjects] = useState(null);
   //const { email, setEmail, username, setUserame } = useContext(UserContext);
   useEffect(() => {

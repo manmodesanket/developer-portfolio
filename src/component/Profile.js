@@ -3,7 +3,7 @@ import { db } from "../firebase/firebase";
 import Projects from "./Projects";
 import Info from "./Info";
 import Skills from "./Skills";
-import { auth } from "firebase";
+//import { auth } from "firebase";
 
 const Profile = (props) => {
   const [username, setUsername] = useState("");

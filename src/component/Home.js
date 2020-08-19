@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { auth, db, logout } from "../firebase/firebase";
 import { Link } from "@reach/router";
+import { UserContext } from "./UserContext";
 
 const Home = () => {
-  const [username, setUsername] = useState(null);
+  const { username, setUsername } = useContext(UserContext);
   useEffect(() => {
-    if (auth.currentUser) {
-      db.collection("mapEmailUsername")
-        .doc(auth.currentUser.email)
-        .get()
-        .then((doc) => {
-          setUsername(doc.data().username);
-        });
-    }
-  }, [username]);
+    auth.onAuthStateChanged(() => {
+      if (auth.currentUser) {
+        db.collection("mapEmailUsername")
+          .doc(auth.currentUser.email)
+          .get()
+          .then((doc) => {
+            setUsername(doc.data().username);
+          });
+      } else {
+        setUsername(null);
+      }
+    });
+  }, [setUsername]);
   if (auth.currentUser) {
-    console.log(auth.currentUser.email);
     return (
       <div className="container">
         <div className="row top">
@@ -23,17 +27,11 @@ const Home = () => {
             <div className="title">DevPort</div>
           </div>
           <div className="col s3 m3">
-            <Link to="/login">
-              <button>Login</button>
-            </Link>
             <Link to={`${username}`}>
               <button>Profile</button>
             </Link>
           </div>
           <div className="col s3 m3">
-            <Link to="/signup">
-              <button>Sigup</button>
-            </Link>
             <button onClick={logout}>Logout</button>
           </div>
         </div>
