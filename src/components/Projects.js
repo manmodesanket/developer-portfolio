@@ -3,43 +3,14 @@ import { auth } from "../firebase/firebase";
 //import { Link } from "@reach/router";
 //import { UserContext } from "./UserContext";
 
-const Projects = () => {
+const Projects = (props) => {
   const [projects, setProjects] = useState(null);
   //const { email, setEmail, username, setUserame } = useContext(UserContext);
   useEffect(() => {
-    //db.collection('users').doc()
-    //console.log(db.collection("users").doc(email));
-    if (auth.currentUser) {
-      console.log(auth.currentUser.email);
-      /*db.collection("users")
-        .doc(auth.currentUser.email)
-        .get()
-        .then((doc) => {
-          console.log(doc.data());
-        });*/
+    if (props.data) {
+      setProjects(props.data.project);
     }
-    const p = [
-      {
-        name: "Project Title 1",
-        description: "First Project",
-        github: "https://github.com/manmodesanket/developer-portfolio",
-        site: "www.google.com",
-      },
-      {
-        name: "Project Title 2",
-        description: "Second Project",
-        github: "https://github.com/manmodesanket/developer-portfolio",
-        site: "www.google.com",
-      },
-      {
-        name: "Project Title 3",
-        description: "Third Project",
-        github: "https://github.com/manmodesanket/developer-portfolio",
-        site: "www.google.com",
-      },
-    ];
-    setProjects(p);
-  }, []);
+  }, [props.data]);
 
   if (projects) {
     const list = projects.map((p, idx) => {
@@ -68,7 +39,16 @@ const Projects = () => {
       </div>
     );
   } else {
-    return <div>Projects</div>;
+    return (
+      <div className="container">
+        <div className="card">
+          <div className="card-content">
+            <div className="card-title">Projects</div>
+            <div>Connection error or data not available</div>
+          </div>
+        </div>
+      </div>
+    );
   }
 };
 

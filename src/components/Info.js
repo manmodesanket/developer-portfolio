@@ -68,7 +68,14 @@ const Info = (props) => {
       </div>
     );
   } else {
-    return <div>Loading</div>;
+    return (
+      <div className="card">
+        <div className="card-content">
+          <div className="card-title">Profile</div>
+          <div>Connection error or data not available</div>
+        </div>
+      </div>
+    );
   }
 };
 

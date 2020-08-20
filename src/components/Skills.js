@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-const Skills = () => {
+const Skills = (props) => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    const arrSkills = ["React", "NodeJS"];
-    setSkills(arrSkills);
-  }, []);
+    if (props.data) {
+      setSkills(props.data.skills);
+    }
+  }, [props.data]);
 
   if (skills) {
     const list = skills.map((s, idx) => {
@@ -17,13 +18,22 @@ const Skills = () => {
         <div className="card">
           <div className="card-content">
             <div className="card-title">Skills</div>
-            <ul className="skillList">{list}</ul>
+            <ul className="skillList">
+              {list ? list : <div>Connection error or data not available</div>}
+            </ul>
           </div>
         </div>
       </div>
     );
   } else {
-    return <div></div>;
+    return (
+      <div className="container">
+        <div className="card">
+          <div className="card-title">Skills</div>
+          <div>Connection error or data not available</div>
+        </div>
+      </div>
+    );
   }
 };
 
