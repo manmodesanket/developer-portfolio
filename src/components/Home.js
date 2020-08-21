@@ -30,6 +30,9 @@ const Home = () => {
             <Link to={`${username}`}>
               <button>Profile</button>
             </Link>
+            <Link to="/setting">
+              <button>Setting</button>
+            </Link>
           </div>
           <div className="col s3 m3">
             <button onClick={logout}>Logout</button>

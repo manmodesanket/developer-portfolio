@@ -6,7 +6,7 @@ import { UserContext } from "./UserContext";
 const Login = () => {
   const [emailForm, setEmailForm] = useState("");
   const [pass, setPass] = useState("");
-  const { username, setUsername } = useContext(UserContext);
+  const { username } = useContext(UserContext);
 
   const handleChange = (e) => {
     if (e.target.name == "email") {

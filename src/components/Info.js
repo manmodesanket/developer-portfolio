@@ -72,7 +72,7 @@ const Info = (props) => {
       <div className="card">
         <div className="card-content">
           <div className="card-title">Profile</div>
-          <div>Connection error or data not available</div>
+          <div>Loading or data not available</div>
         </div>
       </div>
     );
